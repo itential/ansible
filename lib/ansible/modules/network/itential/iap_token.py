@@ -106,11 +106,8 @@ def get_token(module):
     # Using fetch url instead of requests
     response, info = fetch_url(module, url, data=json_body, headers=headers)
     response_code = str(info['status'])
-    if info['status'] != 200:
-        if info['status'] >= 400:
-            module.fail_json(msg="Failed to connect to Itential Automation Platform" + response_code)
-        else:
-            module.fail_json(msg="Failed to connect to Itential Automation Platform " + response_code)
+    if info['status'] not in [200, 201]:
+        module.fail_json(msg="Failed to connect to Itential Automation Platform" + response_code)
     response = response.read()
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

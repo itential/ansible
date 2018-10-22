@@ -25,7 +25,7 @@ options:
     description:
       - Provide the port number for the Itential Automation Platform
     required: true
-    type: bool
+    type: string
     default: null
 
   iap_fqdn:
@@ -99,7 +99,6 @@ response:
     returned: always
 msg:
     description: The msg will contain the error code or status of the workflow
-    type: object
     returned: always
 '''
 
@@ -111,10 +110,10 @@ from ansible.module_utils.urls import fetch_url
 import json
 
 
-def start_worflow(module):
+def start_workflow(module):
     """
     :param module:
-    :return: response
+    :return: response and msg
     """
     # defaulting the value for transport_protocol to be : http
     transport_protocol = 'http'
@@ -176,7 +175,7 @@ def main():
             https=(dict(type='bool', default=False))
         )
     )
-    start_worflow(module)
+    start_workflow(module)
 
 
 if __name__ == '__main__':

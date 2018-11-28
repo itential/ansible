@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Copyright: (c) 2018, Itential (@cma0) <opensource@itential.com>
+# Copyright: (c) 2018, Itential <opensource@itential.com>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 """
 This module provides the token for Itential Automation Platform
@@ -17,7 +17,7 @@ DOCUMENTATION = """
 ---
 module: iap_token
 version_added: "2.8"
-author: "Itential (opensource@itential.com)"
+author: "Itential (@cma0) <opensource@itential.com>"
 short_description: Get token for the Itential Automation Platform
 description:
   - Checks the connection to IAP and retrieves a login token.

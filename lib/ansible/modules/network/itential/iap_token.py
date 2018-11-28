@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# Copyright: (c) 2018, Itential <opensource@itential.com>
+# Copyright: (c) 2018, Itential (@cma0) <opensource@itential.com>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 """
 This module provides the token for Itential Automation Platform
@@ -30,7 +30,7 @@ options:
 
   iap_fqdn:
     description:
-      - Provide the fqdn for the Itential Automation Platform
+      - Provide the fqdn or ip-address for the Itential Automation Platform
     required: true
     default: null
 
@@ -48,7 +48,7 @@ options:
 
   https:
     description:
-      - The transport protocol is HyperText Transfer Protocol Secure (HTTPS) for the Itential Automation Platform
+      - Use HTTPS to connect
       - By default using http
     type: bool
     default: False
@@ -109,8 +109,6 @@ def get_token(module):
     if info['status'] not in [200, 201]:
         module.fail_json(msg="Failed to connect to Itential Automation Platform" + response_code)
     response = response.read()
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
     module.exit_json(changed=True, token=response)
 
 
@@ -126,10 +124,10 @@ def main():
     # supports check mode
     module = AnsibleModule(
         argument_spec=dict(
-            iap_port=dict(type='str', required=True),
+            iap_port=dict(type='int', required=True),
             iap_fqdn=dict(type='str', required=True),
             username=dict(type='str', required=True),
-            password=dict(type='str', required=True),
+            password=dict(type='str', required=True, no_log=True),
             https=(dict(type='bool', default=False))
         )
     )
